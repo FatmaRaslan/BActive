@@ -1,42 +1,46 @@
 import { useState } from 'react'
 import './App.css'
 
-const suppliedImages = [
-  'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=85',
-  'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85',
-  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85',
-  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=85',
-  'https://images.unsplash.com/photo-1497366858526-0766cadbe8fa?auto=format&fit=crop&w=1000&q=85',
-  'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=85',
-  'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=85',
-  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85',
-  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85',
-  'https://images.unsplash.com/photo-1497366858526-0766cadbe8fa?auto=format&fit=crop&w=1200&q=85',
-  'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85',
-  'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=700&q=85',
-  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=85',
-  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=85',
-  'https://images.unsplash.com/photo-1497366858526-0766cadbe8fa?auto=format&fit=crop&w=700&q=85',
+const logoUrl = 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fbe7a7c657d8c47f58aeb881dbdb975c7?format=webp&width=800&height=1200'
+
+const providedPhotos = [
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F24329520220d4ab3a88097edebeba3d2?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fe2c1cbe7e9384296b1f694034289661f?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fdcf0cf6f948046f3b872c63e324b0ff7?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fc64bbdff406344bab82dba5780991b0b?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F26cb189c6d5f444590b5180aa9d5d1e9?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fb82f9debc3034b10b4632b9977fd97c8?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F4590448ac0574b15bd92e730551e1248?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fd50c25cc3b6f49008f838de8b46f190b?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F457296742ce84a8e8542cf7dce7c7cfc?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Ffd972dd82c634f5c98b98b97e3cb5b24?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F0e327558baae48f28af0f9dba1b76db9?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fd32bef18163b4a938c6dc302e6b868e5?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fdd7bd61c40444ddc8353b0639b295e7f?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fec414e448a8b4cb792dfa13b4638f927?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fac16fd1ca2c0478cb4c84c4526fc4817?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Ff16f2cf698be4528b30b47672a4e3b57?format=webp&width=800&height=1200',
+  'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fab357d1ced4d45f4975d3a39968b19eb?format=webp&width=800&height=1200',
 ]
 
 const workspaces = [
   {
     title: 'Private Offices',
     label: 'Most Popular',
-    image: suppliedImages[4],
+    image: providedPhotos[3],
     copy: 'Your own professional space, ready when you are.',
     description: 'Fully furnished private offices for individuals and teams. Move in, move on — no setup needed.',
   },
   {
     title: 'Coworking Space',
-    image: suppliedImages[5],
+    image: providedPhotos[4],
     copy: 'A flexible environment to work, study and connect.',
     description: 'Shared desks in a professional setting — ideal for freelancers and remote workers who value focus.',
   },
   {
     title: 'Daily / Hourly Offices',
     label: 'Flexible',
-    image: suppliedImages[6],
+    image: providedPhotos[5],
     copy: 'Professional workspace when you need it.',
     description: 'Reserve a private office for a day or a few hours. Perfect for meetings, client calls, or deep work.',
   },
@@ -55,26 +59,25 @@ const locations = [
   {
     name: 'B Active – Sidi Gaber',
     shortName: 'Sidi Gaber',
-    image: suppliedImages[9],
+    image: providedPhotos[0],
     address: '322 El Horreya Road (Abou Qir Street), Sidi Gaber, Alexandria, Egypt.',
     directions: ['Opposite Sami Semaan Car Showroom & Suzuki Cars Dealership', 'White Building / Cafe White', 'Entrance B — the entrance on the left', '3rd Floor — Apartment 8'],
-    gallery: suppliedImages.slice(11, 15),
+    gallery: providedPhotos.slice(0, 8),
   },
   {
     name: 'B Active – Rushdy',
     shortName: 'Rushdy',
-    image: suppliedImages[10],
+    image: providedPhotos[8],
     address: '456–458 Abou Qir Street, Rushdy, Alexandria, Egypt.',
     directions: ['Saraya Rushdy Building', 'Next to Andalusia Hospital', 'Opposite Hossam Clothing Store', '12th Floor'],
-    gallery: suppliedImages.slice(7, 11),
+    gallery: providedPhotos.slice(8, 17),
   },
 ]
 
 function BrandMark({ light = false }) {
   return (
     <a className={`brand ${light ? 'brand-light' : ''}`} href="#top" aria-label="B Active home">
-      <span className="brand-b">B</span><span>Active</span>
-      <small>OFFICE SPACE</small>
+      {light ? <><span className="brand-b">B</span><span>Active</span><small>OFFICE SPACE</small></> : <span className="brand-logo-crop"><img className="brand-logo" src={logoUrl} alt="B Active Office Space" /></span>}
     </a>
   )
 }
@@ -136,7 +139,7 @@ function Header({ menuOpen, setMenuOpen }) {
 function Hero() {
   return (
     <section className="hero" id="top">
-      <Photo src={suppliedImages[0]} alt="B Active professional workspace" className="hero-image" position="center center" />
+      <Photo src={providedPhotos[0]} alt="B Active professional workspace" className="hero-image" position="center center" />
       <div className="hero-overlay" />
       <div className="hero-content container">
         <p className="hero-pill"><span /> Flexible · Professional · Ready for you</p>
@@ -162,8 +165,8 @@ function About() {
     <section className="about section" id="about">
       <div className="about-grid container">
         <div className="about-media">
-          <Photo src={suppliedImages[2]} alt="Furnished B Active office" position="left center" />
-          <div className="about-thumb"><Photo src={suppliedImages[3]} alt="B Active meeting room" position="center" /></div>
+          <Photo src={providedPhotos[2]} alt="Furnished B Active office" position="left center" />
+          <div className="about-thumb"><Photo src={providedPhotos[3]} alt="B Active meeting room" position="center" /></div>
         </div>
         <div className="about-copy">
           <p className="eyebrow">About B Active</p>
@@ -240,10 +243,10 @@ function Gallery() {
   return (
     <section className="gallery section" aria-label="B Active workspace gallery">
       <div className="gallery-grid container">
-        <div className="gallery-large"><Photo src={suppliedImages[7]} alt="B Active workspace" position="center top" /></div>
-        <div className="gallery-tall"><Photo src={suppliedImages[8]} alt="B Active private office" position="center top" /></div>
-        <div><Photo src={suppliedImages[11]} alt="B Active workspace detail" position="center" /></div>
-        <div><Photo src={suppliedImages[12]} alt="B Active office interior" position="center" /></div>
+        <div className="gallery-large"><Photo src={providedPhotos[6]} alt="B Active workspace" position="center top" /></div>
+        <div className="gallery-tall"><Photo src={providedPhotos[7]} alt="B Active private office" position="center top" /></div>
+        <div><Photo src={providedPhotos[8]} alt="B Active workspace detail" position="center" /></div>
+        <div><Photo src={providedPhotos[9]} alt="B Active office interior" position="center" /></div>
         <div className="gallery-message"><span className="benefit-icon">✦</span><strong>Work. Focus. Grow.</strong><small>Alexandria, Egypt</small></div>
       </div>
     </section>
@@ -261,7 +264,7 @@ function LocationCard({ location, onNotice }) {
       <div className="location-details">
         <div className="detail-block"><h4>⌖ <span>Address</span></h4><p>{location.address}</p></div>
         <div className="detail-block"><h4>⌂ <span>How to Find Us</span></h4><ul>{location.directions.map((direction) => <li key={direction}>{direction}</li>)}</ul></div>
-        <div className="branch-photos"><div className="detail-heading"><h4>▱ <span>Branch Photos</span></h4><small>8 photos</small></div><div className="photo-grid">{location.gallery.map((photo, photoIndex) => <Photo key={photo} src={photo} alt={`${location.shortName} workspace ${photoIndex + 1}`} position="center" />)}</div></div>
+        <div className="branch-photos"><div className="detail-heading"><h4>▱ <span>Branch Photos</span></h4><small>{location.gallery.length} photos</small></div><div className="photo-grid">{location.gallery.map((photo, photoIndex) => <Photo key={photo} src={photo} alt={`${location.shortName} workspace ${photoIndex + 1}`} position="center" />)}</div></div>
         <div className="location-actions"><button type="button" className="button button-outline" onClick={() => onNotice('Directions are available by contacting the B Active team.')}>⌁ &nbsp; Get Directions</button><Button href="#contact">Contact Us</Button></div>
       </div>
     </article>

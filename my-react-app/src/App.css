@@ -37,6 +37,8 @@ button { font: inherit; }
 .brand { position: relative; display: inline-flex; align-items: baseline; gap: 2px; color: var(--ink); font-family: var(--display); font-size: 24px; line-height: 1; letter-spacing: -1.4px; }
 .brand-b { color: var(--red); }
 .brand small { position: absolute; left: 1px; bottom: -13px; color: #777; font: 500 6px/1 var(--body); letter-spacing: 1.15px; white-space: nowrap; }
+.brand-logo-crop { position: relative; display: block; width: 138px; height: 48px; overflow: hidden; }
+.brand-logo { position: absolute; top: -51px; left: -10px; width: 152px; height: 152px; max-width: none; object-fit: cover; mix-blend-mode: multiply; }
 .brand-light { color: #fff; }
 .brand-light small { color: #777; }
 .main-nav { display: flex; align-items: center; gap: 30px; margin-left: auto; margin-right: 28px; }
