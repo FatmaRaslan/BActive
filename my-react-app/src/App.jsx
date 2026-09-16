@@ -41,7 +41,7 @@ const workspaces = [
   {
     title: 'Daily / Hourly Offices',
     label: 'Flexible',
-    image: providedPhotos[5],
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F9c125534f81c4e32ac906d33f0a34247?format=webp&width=800&height=1200',
     copy: 'Professional workspace when you need it.',
     description: 'Reserve a private office for a day or a few hours. Perfect for meetings, client calls, or deep work.',
   },
