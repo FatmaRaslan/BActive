@@ -139,7 +139,7 @@ function Header({ menuOpen, setMenuOpen }) {
 function Hero() {
   return (
     <section className="hero" id="top">
-      <Photo src={providedPhotos[0]} alt="B Active professional workspace" className="hero-image" position="center center" />
+      <Photo src="https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F3551a0c1f2a045cb891dc443907dc8b9?format=webp&width=800&height=1200" alt="B Active professional workspace" className="hero-image" position="center center" />
       <div className="hero-overlay" />
       <div className="hero-content container">
         <p className="hero-pill"><span /> Flexible · Professional · Ready for you</p>
@@ -304,6 +304,7 @@ function FinalCta() {
         <p>Tell us what you need, and we’ll help you find the right workspace in Alexandria.</p>
         <div className="cta-actions"><Button variant="white">Book a Visit</Button><Button variant="ghost">Contact Us</Button></div>
         <div className="cta-meta"><span>⌖ Sidi Gaber &amp; Rushdy, Alexandria</span><span>◷ Saturday – Thursday, 9 AM – 9 PM</span></div>
+        <a className="cta-phone" href="tel:01201763362">01201763362</a>
       </div>
     </section>
   )
