@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 const logoUrl = 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fbe7a7c657d8c47f58aeb881dbdb975c7?format=webp&width=800&height=1200'
+const whatsappUrl = 'https://wa.me/201201763362'
 
 const providedPhotos = [
   'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F24329520220d4ab3a88097edebeba3d2?format=webp&width=800&height=1200',
@@ -86,9 +87,9 @@ function Arrow() {
   return <span aria-hidden="true">→</span>
 }
 
-function Button({ children, variant = 'primary', href = '#contact', onClick, className = '' }) {
+function Button({ children, variant = 'primary', href = '#contact', onClick, className = '', target, rel }) {
   return (
-    <a className={`button button-${variant} ${className}`} href={href} onClick={onClick}>
+    <a className={`button button-${variant} ${className}`} href={href} onClick={onClick} target={target} rel={rel}>
       {children} <Arrow />
     </a>
   )
@@ -125,9 +126,9 @@ function Header({ menuOpen, setMenuOpen }) {
           {links.map(([label, href]) => (
             <a href={href} key={label} onClick={() => setMenuOpen(false)}>{label}</a>
           ))}
-          <Button className="mobile-nav-cta">Book a Visit</Button>
+          <Button className="mobile-nav-cta" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book a Visit</Button>
         </nav>
-        <Button className="header-cta">Book a Visit</Button>
+        <Button className="header-cta" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book a Visit</Button>
         <button className="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           <span /><span /><span />
         </button>
@@ -147,7 +148,7 @@ function Hero() {
         <p className="hero-copy">Professional workspaces and private offices designed for freelancers, startups, teams and businesses in Alexandria.</p>
         <div className="hero-actions">
           <Button variant="white" href="#workspaces">Explore Workspaces</Button>
-          <Button>Book a Visit</Button>
+          <Button href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book a Visit</Button>
         </div>
       </div>
       <div className="stats-bar container">
@@ -176,7 +177,7 @@ function About() {
           <ul className="check-list">
             {bullets.map((bullet) => <li key={bullet}><span>✓</span>{bullet}</li>)}
           </ul>
-          <Button>Book a Visit</Button>
+          <Button href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book a Visit</Button>
         </div>
       </div>
     </section>
@@ -265,7 +266,7 @@ function LocationCard({ location, onNotice }) {
         <div className="detail-block"><h4>⌖ <span>Address</span></h4><p>{location.address}</p></div>
         <div className="detail-block"><h4>⌂ <span>How to Find Us</span></h4><ul>{location.directions.map((direction) => <li key={direction}>{direction}</li>)}</ul></div>
         <div className="branch-photos"><div className="detail-heading"><h4>▱ <span>Branch Photos</span></h4><small>{location.gallery.length} photos</small></div><div className="photo-grid">{location.gallery.map((photo, photoIndex) => <Photo key={photo} src={photo} alt={`${location.shortName} workspace ${photoIndex + 1}`} position="center" />)}</div></div>
-        <div className="location-actions"><button type="button" className="button button-outline" onClick={() => onNotice('Directions are available by contacting the B Active team.')}>⌁ &nbsp; Get Directions</button><Button href="#contact">Contact Us</Button></div>
+        <div className="location-actions"><button type="button" className="button button-outline" onClick={() => onNotice('Directions are available by contacting the B Active team.')}>⌁ &nbsp; Get Directions</button><Button href={whatsappUrl} target="_blank" rel="noopener noreferrer">Contact Us</Button></div>
       </div>
     </article>
   )
@@ -302,7 +303,7 @@ function FinalCta() {
         <p className="eyebrow">Ready to Start?</p>
         <h2>Ready for Your Next<br /><em>Workspace?</em></h2>
         <p>Tell us what you need, and we’ll help you find the right workspace in Alexandria.</p>
-        <div className="cta-actions"><Button variant="white">Book a Visit</Button><Button variant="ghost">Contact Us</Button></div>
+        <div className="cta-actions"><Button variant="white" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book a Visit</Button><Button variant="ghost" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Contact Us</Button></div>
         <div className="cta-meta"><span>⌖ Sidi Gaber &amp; Rushdy, Alexandria</span><span>◷ Saturday – Thursday, 9 AM – 9 PM</span></div>
         <a className="cta-phone" href="tel:01201763362">01201763362</a>
       </div>
@@ -316,7 +317,7 @@ function Footer() {
       <div className="footer-grid container">
         <div><BrandMark light /><p>Professional workspaces and private offices in Alexandria, Egypt. Everything your business needs in one place.</p><small>Alexandria, Egypt</small></div>
         <div><h4>Quick Links</h4><a href="#workspaces">Workspaces</a><a href="#services">Services</a><a href="#locations">Locations</a><a href="#contact">Contact</a></div>
-        <div><h4>Follow B Active</h4><div className="socials"><a href="#contact" aria-label="Instagram">◎</a><a href="#contact" aria-label="TikTok">♪</a><a href="#contact" aria-label="LinkedIn">in</a><a href="#contact" aria-label="Facebook">f</a></div><h5>Our Locations</h5><small>Sidi Gaber — 322 El Horreya Road<br />Rushdy — 456–458 Abou Qir Street</small></div>
+        <div><h4>Follow B Active</h4><div className="socials"><a href="https://www.instagram.com/b.activeofficespace?stkn=MXhreXl4d2d3aGk2Nw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a><a href="https://www.linkedin.com/company/b-active-office-space/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a><a href="https://www.facebook.com/share/1EQKBkkA8M/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a></div><h5>Our Locations</h5><small>Sidi Gaber — 322 El Horreya Road<br />Rushdy — 456–458 Abou Qir Street</small></div>
       </div>
       <div className="footer-bottom container"><span>© 2024 B Active Office Space. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
     </footer>
