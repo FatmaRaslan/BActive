@@ -117,6 +117,7 @@ h1 em, h2 em { color: #e8a0ae; font-style: italic; }
 .office-card-footer { align-items: flex-end; gap: 10px; margin-top: auto; }
 .office-card-footer > span { max-width: 45%; line-height: 1.35; }
 .office-card-footer .button { flex-shrink: 0; padding: 10px 13px; font-size: 10px; }
+.office-card-footer .button-primary, .office-card-footer .button-primary:hover { color: #FFFFFF; }
 
 .services { position: relative; background: #191919; color: #fff; }
 .services .section-intro { margin-bottom: 42px; }
