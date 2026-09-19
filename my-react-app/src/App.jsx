@@ -26,24 +26,53 @@ const providedPhotos = [
 
 const workspaces = [
   {
-    title: 'Private Offices',
-    label: 'Most Popular',
-    image: providedPhotos[3],
-    copy: 'Your own professional space, ready when you are.',
-    description: 'Fully furnished private offices for individuals and teams. Move in, move on — no setup needed.',
+    title: 'Office B',
+    type: 'Private furnished office',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F70c0d654732c4541b6cfba28909409b9?format=webp&width=800&height=1200',
+    details: ['Accommodates 1 person', 'Sidi Gaber branch'],
+    prices: [{ label: 'Monthly', value: '6,000 EGP', previous: '6,500 EGP' }],
+    offer: 'Limited-time offer',
   },
   {
-    title: 'Coworking Space',
-    image: providedPhotos[4],
-    copy: 'A flexible environment to work, study and connect.',
-    description: 'Shared desks in a professional setting — ideal for freelancers and remote workers who value focus.',
+    title: 'Office C',
+    type: 'Private furnished office',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F04e1f685d0d14ae0a7efa046684dd4ba?format=webp&width=800&height=1200',
+    details: ['Air conditioned', 'Has a window', 'Accommodates up to 2 people'],
+    prices: [{ label: 'Monthly', value: '6,500 EGP' }],
   },
   {
-    title: 'Daily / Hourly Offices',
-    label: 'Flexible',
-    image: providedPhotos[5],
-    copy: 'Professional workspace when you need it.',
-    description: 'Reserve a private office for a day or a few hours. Perfect for meetings, client calls, or deep work.',
+    title: 'Office D',
+    type: 'Private furnished office',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F638cb15bb3c94519b90087806c224a95?format=webp&width=800&height=1200',
+    details: ['Air conditioned', 'Has a window', 'Accommodates up to 4 people', 'Sidi Gaber branch'],
+    prices: [{ label: 'Monthly offer', value: '7,500 EGP', previous: '8,500 EGP' }],
+    offer: 'Limited-time offer',
+  },
+  {
+    title: 'Office E',
+    type: 'Private furnished office',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F1961ca88a4d449e581d4bb8d48e2f3c0?format=webp&width=800&height=1200',
+    details: ['Air conditioned', 'Accommodates up to 5 people', 'Sidi Gaber branch'],
+    prices: [{ label: 'Monthly offer', value: '8,500 EGP', previous: '9,500 EGP' }],
+    offer: 'Summer offer / limited-time offer',
+  },
+  {
+    title: 'Office F',
+    type: 'Private furnished office',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Ffbed853288a1489cabd9e3bd1eb3351d?format=webp&width=800&height=1200',
+    details: ['Air conditioned', 'Accommodates up to 5 people', 'Sidi Gaber branch'],
+    prices: [{ label: 'Monthly offer', value: '8,500 EGP', previous: '9,500 EGP' }],
+    offer: 'Summer offer / limited-time offer',
+  },
+  {
+    title: 'Hourly / Daily Office',
+    type: 'Private air-conditioned office',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fd21bcc0f2c044f1f8e36def04bd9a96c?format=webp&width=800&height=1200',
+    details: ['Accommodates up to 4 people'],
+    prices: [
+      { label: 'Hourly', value: '200 EGP / hour' },
+      { label: 'Daily', value: '750 EGP / day' },
+    ],
   },
 ]
 
@@ -188,19 +217,33 @@ function Workspaces() {
   return (
     <section className="workspaces section" id="workspaces">
       <div className="container">
-        <SectionIntro eyebrow="Workspace Options" title="Find Your <em>Perfect Space</em>">From private offices to flexible daily desks — the right workspace for every working style.</SectionIntro>
+        <SectionIntro eyebrow="B Active – Sidi Gaber" title="OFFICES" />
         <div className="workspace-grid">
           {workspaces.map((workspace) => (
             <article className="workspace-card" key={workspace.title}>
               <div className="workspace-image-wrap">
-                <Photo src={workspace.image} alt={workspace.title} position="center top" />
-                {workspace.label && <span className="card-label">{workspace.label}</span>}
+                <Photo src={workspace.image} alt={`${workspace.title} at B Active Sidi Gaber`} position="center top" />
+                {workspace.offer && <span className="card-label">{workspace.offer}</span>}
               </div>
               <div className="workspace-card-body">
                 <h3>{workspace.title}</h3>
-                <p className="card-lead">{workspace.copy}</p>
-                <p>{workspace.description}</p>
-                <div className="card-footer"><span>Ask for Availability</span><a href="#contact">Learn More <Arrow /></a></div>
+                <p className="office-type">{workspace.type}</p>
+                <ul className="office-details">
+                  {workspace.details.map((detail) => <li key={detail}><span>✓</span>{detail}</li>)}
+                </ul>
+                <div className="office-pricing">
+                  {workspace.prices.map((price) => (
+                    <div className="office-price-row" key={price.label}>
+                      <span>{price.label}</span>
+                      <strong>{price.value}</strong>
+                      {price.previous && <small>Previous price <s>{price.previous}</s></small>}
+                    </div>
+                  ))}
+                </div>
+                <div className="card-footer office-card-footer">
+                  <span>{workspace.offer || workspace.type}</span>
+                  <Button href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book an Office</Button>
+                </div>
               </div>
             </article>
           ))}
