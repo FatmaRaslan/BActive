@@ -242,7 +242,7 @@ function Workspaces() {
                 </div>
                 <div className="card-footer office-card-footer">
                   <span>{workspace.offer || workspace.type}</span>
-                  <Button href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book a Visit</Button>
+                  <Button href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book an Office</Button>
                 </div>
               </div>
             </article>
