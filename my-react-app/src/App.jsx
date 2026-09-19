@@ -28,7 +28,7 @@ const workspaces = [
   {
     title: 'Office B',
     type: 'Private furnished office',
-    image: providedPhotos[0],
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fd21bcc0f2c044f1f8e36def04bd9a96c?format=webp&width=800&height=1200',
     details: ['Accommodates up to 2 people', 'Sidi Gaber branch'],
     prices: [{ label: 'Monthly', value: '6,000 EGP', previous: '6,500 EGP' }],
     offer: 'Limited-time offer',
@@ -36,14 +36,14 @@ const workspaces = [
   {
     title: 'Office C',
     type: 'Private furnished office',
-    image: providedPhotos[1],
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F70c0d654732c4541b6cfba28909409b9?format=webp&width=800&height=1200',
     details: ['Air conditioned', 'Has a window', 'Accommodates 1 person'],
     prices: [{ label: 'Monthly', value: '6,500 EGP' }],
   },
   {
     title: 'Office D',
     type: 'Private furnished office',
-    image: providedPhotos[2],
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F638cb15bb3c94519b90087806c224a95?format=webp&width=800&height=1200',
     details: ['Air conditioned', 'Has a window', 'Accommodates up to 4 people', 'Sidi Gaber branch'],
     prices: [{ label: 'Monthly offer', value: '7,500 EGP', previous: '8,500 EGP' }],
     offer: 'Limited-time offer',
@@ -51,7 +51,7 @@ const workspaces = [
   {
     title: 'Office E',
     type: 'Private furnished office',
-    image: providedPhotos[3],
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Ffbed853288a1489cabd9e3bd1eb3351d?format=webp&width=800&height=1200',
     details: ['Air conditioned', 'Accommodates up to 5 people', 'Sidi Gaber branch'],
     prices: [{ label: 'Monthly offer', value: '8,500 EGP', previous: '9,500 EGP' }],
     offer: 'Summer offer / limited-time offer',
@@ -59,7 +59,7 @@ const workspaces = [
   {
     title: 'Office F',
     type: 'Private furnished office',
-    image: providedPhotos[4],
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F1961ca88a4d449e581d4bb8d48e2f3c0?format=webp&width=800&height=1200',
     details: ['Air conditioned', 'Accommodates up to 5 people', 'Sidi Gaber branch'],
     prices: [{ label: 'Monthly offer', value: '8,500 EGP', previous: '9,500 EGP' }],
     offer: 'Summer offer / limited-time offer',
@@ -67,7 +67,7 @@ const workspaces = [
   {
     title: 'Hourly / Daily Office',
     type: 'Private air-conditioned office',
-    image: providedPhotos[5],
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F04e1f685d0d14ae0a7efa046684dd4ba?format=webp&width=800&height=1200',
     details: ['Accommodates up to 4 people'],
     prices: [
       { label: 'Hourly', value: '200 EGP / hour' },
