@@ -92,7 +92,7 @@ const locations = [
     image: providedPhotos[8],
     address: '322 El Horreya Road (Abou Qir Street), Sidi Gaber, Alexandria, Egypt.',
     directions: ['Opposite Sami Semaan Car Showroom & Suzuki Cars Dealership', 'White Building / Cafe White', 'Entrance B — the entrance on the left', '3rd Floor — Apartment 8'],
-    gallery: providedPhotos.slice(8, 17),
+    gallery: providedPhotos.slice(8, 17).filter((photo) => photo !== providedPhotos[11]),
   },
   {
     name: 'B Active – Rushdy',
