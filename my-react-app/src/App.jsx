@@ -30,7 +30,7 @@ const workspaces = [
     type: 'Private furnished office',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F70c0d654732c4541b6cfba28909409b9?format=webp&width=800&height=1200',
     details: ['Accommodates 1 person', 'Sidi Gaber branch'],
-    prices: [{ label: 'Monthly', value: '6,000 EGP', previous: '6,500 EGP' }],
+    prices: [{ label: 'Monthly', value: '5,500 EGP', previous: '6,500 EGP' }],
     offer: 'Limited-time offer',
   },
   {
