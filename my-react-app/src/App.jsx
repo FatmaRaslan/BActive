@@ -89,18 +89,18 @@ const locations = [
   {
     name: 'B Active – Sidi Gaber',
     shortName: 'Sidi Gaber',
-    image: providedPhotos[0],
+    image: providedPhotos[8],
     address: '322 El Horreya Road (Abou Qir Street), Sidi Gaber, Alexandria, Egypt.',
     directions: ['Opposite Sami Semaan Car Showroom & Suzuki Cars Dealership', 'White Building / Cafe White', 'Entrance B — the entrance on the left', '3rd Floor — Apartment 8'],
-    gallery: providedPhotos.slice(0, 8),
+    gallery: providedPhotos.slice(8, 17),
   },
   {
     name: 'B Active – Rushdy',
     shortName: 'Rushdy',
-    image: providedPhotos[8],
+    image: providedPhotos[0],
     address: '456–458 Abou Qir Street, Rushdy, Alexandria, Egypt.',
     directions: ['Saraya Rushdy Building', 'Next to Andalusia Hospital', 'Opposite Hossam Clothing Store', '12th Floor'],
-    gallery: providedPhotos.slice(8, 17),
+    gallery: providedPhotos.slice(0, 8),
   },
 ]
 
