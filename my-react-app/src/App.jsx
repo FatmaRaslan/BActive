@@ -347,7 +347,7 @@ function FinalCta() {
         <h2>Ready for Your Next<br /><em>Workspace?</em></h2>
         <p>Tell us what you need, and we’ll help you find the right workspace in Alexandria.</p>
         <div className="cta-actions"><Button variant="white" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Book a Visit</Button><Button variant="ghost" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Contact Us</Button></div>
-        <div className="cta-meta"><span>⌖ Sidi Gaber &amp; Rushdy, Alexandria</span><span>◷ Saturday – Thursday, 9 AM – 9 PM</span></div>
+        <div className="cta-meta"><span>⌖ Sidi Gaber &amp; Rushdy, Alexandria</span><span>◷ Saturday – Thursday, 12 PM – 8 PM</span></div>
         <a className="cta-phone" href="tel:01201763362">01201763362</a>
       </div>
     </section>
