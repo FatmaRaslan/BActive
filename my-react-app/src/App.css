@@ -100,6 +100,12 @@ h1 em, h2 em { color: #e8a0ae; font-style: italic; }
 .workspace-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid #e5e2df; border-radius: 10px; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,.03); transition: transform .2s ease, box-shadow .2s ease; }
 .workspace-card:hover { transform: translateY(-5px); box-shadow: 0 14px 25px rgba(30,20,20,.1); }
 .workspace-image-wrap { position: relative; height: 215px; }
+.workspace-image-trigger { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.workspace-image-trigger::after { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.25); color: #fff; content: 'View photo'; font-size: 11px; font-weight: 700; letter-spacing: .3px; opacity: 0; transition: opacity .2s ease; }
+.workspace-image-trigger:hover::after, .workspace-image-trigger:focus-visible::after { opacity: 1; }
+.workspace-image-trigger:focus-visible { outline: 3px solid rgba(200,16,53,.55); outline-offset: -3px; }
+.workspace-image-trigger .photo { transition: transform .35s ease; }
+.workspace-image-trigger:hover .photo, .workspace-image-trigger:focus-visible .photo { transform: scale(1.04); }
 .card-label { position: absolute; top: 12px; left: 12px; max-width: calc(100% - 24px); border-radius: 999px; padding: 6px 11px; background: var(--red); color: #fff; font-size: 9px; font-weight: 700; line-height: 1.2; }
 .workspace-card-body { display: flex; flex: 1; flex-direction: column; padding: 21px 17px 15px; }
 .workspace-card h3 { margin-bottom: 7px; font-size: 16px; }
@@ -210,6 +216,12 @@ h1 em, h2 em { color: #e8a0ae; font-style: italic; }
 .socials a { display: flex; align-items: center; justify-content: center; width: 25px; height: 25px; border-radius: 6px; background: #282828; color: #ddd; font-size: 11px; font-weight: 600; }
 .footer-bottom { display: flex; justify-content: space-between; padding-top: 17px; border-top: 1px solid #292929; color: #666; font-size: 9px; }
 .notice { position: fixed; z-index: 100; right: 24px; bottom: 24px; max-width: min(360px, calc(100% - 48px)); padding: 14px 17px; border-radius: 7px; background: #191919; color: #fff; box-shadow: 0 12px 30px rgba(0,0,0,.2); font-size: 12px; }
+.image-lightbox { position: fixed; z-index: 10000; inset: 0; display: flex; align-items: center; justify-content: center; padding: 30px; background: rgba(10,10,10,.88); animation: lightbox-fade-in .2s ease; }
+.image-lightbox-content { position: relative; display: flex; align-items: center; justify-content: center; max-width: min(100%, 1000px); max-height: 100%; }
+.image-lightbox-image { display: block; max-width: 100%; max-height: calc(100vh - 60px); border-radius: 6px; object-fit: contain; box-shadow: 0 18px 50px rgba(0,0,0,.4); }
+.image-lightbox-close { position: absolute; z-index: 1; top: -15px; right: -15px; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; background: #fff; color: var(--ink); font-size: 25px; line-height: 1; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,.25); }
+.image-lightbox-close:hover, .image-lightbox-close:focus-visible { background: var(--red); color: #fff; }
+@keyframes lightbox-fade-in { from { opacity: 0; } to { opacity: 1; } }
 
 @media (max-width: 900px) {
   .container, .header-inner { width: min(var(--container), calc(100% - 48px)); }
@@ -248,6 +260,9 @@ h1 em, h2 em { color: #e8a0ae; font-style: italic; }
   .about-copy h2 { font-size: 46px; }
   .workspace-grid, .benefit-grid, .testimonial-grid { grid-template-columns: 1fr; }
   .workspace-image-wrap { height: 230px; }
+  .image-lightbox { padding: 20px; }
+  .image-lightbox-image { max-height: calc(100vh - 40px); }
+  .image-lightbox-close { top: -11px; right: -11px; }
   .office-card-footer > span { max-width: 50%; }
   .benefit-card { min-height: 126px; }
   .experience-grid { gap: 30px; }

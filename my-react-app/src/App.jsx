@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const logoUrl = 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fbe7a7c657d8c47f58aeb881dbdb975c7?format=webp&width=800&height=1200'
@@ -128,6 +128,19 @@ function Photo({ src, alt, className = '', position = 'center' }) {
   return <img className={`photo ${className}`} src={src} alt={alt} style={{ objectPosition: position }} />
 }
 
+function ImageLightbox({ image, onClose }) {
+  if (!image) return null
+
+  return (
+    <div className="image-lightbox" role="dialog" aria-modal="true" aria-label={`${image.alt} enlarged view`} onClick={onClose}>
+      <div className="image-lightbox-content" onClick={(event) => event.stopPropagation()}>
+        <button className="image-lightbox-close" type="button" onClick={onClose} aria-label="Close enlarged image">×</button>
+        <img className="image-lightbox-image" src={image.src} alt={image.alt} />
+      </div>
+    </div>
+  )
+}
+
 function SectionIntro({ eyebrow, title, children, dark = false }) {
   return (
     <div className={`section-intro ${dark ? 'section-intro-dark' : ''}`}>
@@ -213,7 +226,7 @@ function About() {
   )
 }
 
-function Workspaces() {
+function Workspaces({ onPhotoClick }) {
   return (
     <section className="workspaces section" id="workspaces">
       <div className="container">
@@ -222,8 +235,15 @@ function Workspaces() {
           {workspaces.map((workspace) => (
             <article className="workspace-card" key={workspace.title}>
               <div className="workspace-image-wrap">
-                <Photo src={workspace.image} alt={`${workspace.title} at B Active Sidi Gaber`} position="center top" />
-                {workspace.offer && <span className="card-label">{workspace.offer}</span>}
+                <button
+                  className="workspace-image-trigger"
+                  type="button"
+                  onClick={() => onPhotoClick({ src: workspace.image, alt: `${workspace.title} at B Active Sidi Gaber` })}
+                  aria-label={`View ${workspace.title} photo`}
+                >
+                  <Photo src={workspace.image} alt={`${workspace.title} at B Active Sidi Gaber`} position="center top" />
+                  {workspace.offer && <span className="card-label">{workspace.offer}</span>}
+                </button>
               </div>
               <div className="workspace-card-body">
                 <h3>{workspace.title}</h3>
@@ -370,6 +390,22 @@ function Footer() {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [notice, setNotice] = useState('')
+  const [lightbox, setLightbox] = useState(null)
+
+  useEffect(() => {
+    if (!lightbox) return undefined
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setLightbox(null)
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [lightbox])
 
   const showNotice = (message) => {
     setNotice(message)
@@ -382,7 +418,7 @@ function App() {
       <main>
         <Hero />
         <About />
-        <Workspaces />
+        <Workspaces onPhotoClick={setLightbox} />
         <Services />
         <Experience />
         <Gallery />
@@ -391,6 +427,7 @@ function App() {
         <FinalCta />
       </main>
       <Footer />
+      <ImageLightbox image={lightbox} onClose={() => setLightbox(null)} />
       {notice && <div className="notice" role="status">{notice}</div>}
     </div>
   )
