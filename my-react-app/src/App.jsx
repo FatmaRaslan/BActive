@@ -31,7 +31,7 @@ const workspaces = [
     branch: 'Sidi Gaber Branch',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F70c0d654732c4541b6cfba28909409b9?format=webp&width=800&height=1200',
     details: [{ label: 'Window', icon: '□' }, { label: 'Up to 2 desks', icon: '♙' }],
-    prices: [{ label: 'Monthly', value: '5,525 EGP', unit: '/ month', previous: '6,500 EGP' }],
+    prices: [{ label: 'Monthly', value: '5,100 EGP', unit: '/ month', previous: '6,500 EGP' }],
     offer: 'Limited Time Offer',
   },
   {
