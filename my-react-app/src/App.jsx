@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const logoUrl = 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Fbe7a7c657d8c47f58aeb881dbdb975c7?format=webp&width=800&height=1200'
@@ -27,42 +27,48 @@ const providedPhotos = [
 const workspaces = [
   {
     title: 'Office B',
-    type: 'Private furnished office',
+    type: 'Private Furnished Office',
+    branch: 'Sidi Gaber Branch',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F70c0d654732c4541b6cfba28909409b9?format=webp&width=800&height=1200',
-    details: ['Accommodates 1 person', 'Sidi Gaber branch'],
-    prices: [{ label: 'Monthly', value: '5,500 EGP', previous: '6,500 EGP' }],
-    offer: 'Limited-time offer',
+    details: [{ label: 'Window', icon: '□' }, { label: 'Up to 2 desks', icon: '♙' }],
+    prices: [{ label: 'Monthly', value: '5,100 EGP', unit: '/ month', previous: '6,500 EGP' }],
+    offer: 'Limited Time Offer',
   },
   {
     title: 'Office C',
-    type: 'Private furnished office',
+    type: 'Private Furnished & Air-Conditioned Office',
+    branch: 'Sidi Gaber Branch',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F04e1f685d0d14ae0a7efa046684dd4ba?format=webp&width=800&height=1200',
-    details: ['Air conditioned', 'Has a window', 'Accommodates up to 2 people'],
-    prices: [{ label: 'Monthly', value: '6,500 EGP' }],
+    details: [{ label: 'Window', icon: '□' }, { label: '1 desk', icon: '♙' }],
+    prices: [{ label: 'Monthly', value: '5,525 EGP', unit: '/ month' }],
+    offer: 'Limited Time Offer',
   },
   {
     title: 'Office D',
-    type: 'Private furnished office',
+    type: 'Private Furnished & Air-Conditioned Office',
+    branch: 'Sidi Gaber Branch',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F638cb15bb3c94519b90087806c224a95?format=webp&width=800&height=1200',
-    details: ['Air conditioned', 'Has a window', 'Accommodates up to 4 people', 'Sidi Gaber branch'],
-    prices: [{ label: 'Monthly offer', value: '7,500 EGP', previous: '8,500 EGP' }],
-    offer: 'Limited-time offer',
+    details: [{ label: 'Window', icon: '□' }, { label: 'Up to 4 desks', icon: '♙' }],
+    prices: [{ label: 'Monthly', value: '7,225 EGP', unit: '/ month', previous: '8,500 EGP' }],
+    offer: 'Limited Time Offer',
   },
   {
     title: 'Office E',
-    type: 'Private furnished office',
+    type: 'Private Furnished & Air-Conditioned Office',
+    branch: 'Sidi Gaber Branch',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2F1961ca88a4d449e581d4bb8d48e2f3c0?format=webp&width=800&height=1200',
-    details: ['Air conditioned', 'Accommodates up to 5 people', 'Sidi Gaber branch'],
-    prices: [{ label: 'Monthly offer', value: '8,500 EGP', previous: '9,500 EGP' }],
-    offer: 'Summer offer / limited-time offer',
+    details: [{ label: 'Up to 5 desks', icon: '♙' }],
+    prices: [{ label: 'Monthly', value: '8,075 EGP', unit: '/ month', previous: '9,500 EGP' }],
+    offer: 'Limited Time Offer',
   },
   {
     title: 'Office F',
-    type: 'Private furnished office',
+    type: 'Private Furnished & Air-Conditioned Office',
+    branch: 'Sidi Gaber Branch',
     image: 'https://cdn.builder.io/api/v1/image/assets%2F59d6c340c3c447589072b47b1fe6a83f%2Ffbed853288a1489cabd9e3bd1eb3351d?format=webp&width=800&height=1200',
-    details: ['Air conditioned', 'Accommodates up to 5 people', 'Sidi Gaber branch'],
-    prices: [{ label: 'Monthly offer', value: '8,500 EGP', previous: '9,500 EGP' }],
-    offer: 'Summer offer / limited-time offer',
+    details: [{ label: 'Up to 5 desks', icon: '♙' }],
+    prices: [{ label: 'Monthly', value: '8,075 EGP', unit: '/ month', previous: '9,500 EGP' }],
+    offer: 'Limited Time Offer',
   },
   {
     title: 'Hourly / Daily Office',
@@ -126,6 +132,19 @@ function Button({ children, variant = 'primary', href = '#contact', onClick, cla
 
 function Photo({ src, alt, className = '', position = 'center' }) {
   return <img className={`photo ${className}`} src={src} alt={alt} style={{ objectPosition: position }} />
+}
+
+function ImageLightbox({ image, onClose }) {
+  if (!image) return null
+
+  return (
+    <div className="image-lightbox" role="dialog" aria-modal="true" aria-label={`${image.alt} enlarged view`} onClick={onClose}>
+      <div className="image-lightbox-content" onClick={(event) => event.stopPropagation()}>
+        <button className="image-lightbox-close" type="button" onClick={onClose} aria-label="Close enlarged image">×</button>
+        <img className="image-lightbox-image" src={image.src} alt={image.alt} />
+      </div>
+    </div>
+  )
 }
 
 function SectionIntro({ eyebrow, title, children, dark = false }) {
@@ -213,7 +232,7 @@ function About() {
   )
 }
 
-function Workspaces() {
+function Workspaces({ onPhotoClick }) {
   return (
     <section className="workspaces section" id="workspaces">
       <div className="container">
@@ -222,21 +241,35 @@ function Workspaces() {
           {workspaces.map((workspace) => (
             <article className="workspace-card" key={workspace.title}>
               <div className="workspace-image-wrap">
-                <Photo src={workspace.image} alt={`${workspace.title} at B Active Sidi Gaber`} position="center top" />
-                {workspace.offer && <span className="card-label">{workspace.offer}</span>}
+                <button
+                  className="workspace-image-trigger"
+                  type="button"
+                  onClick={() => onPhotoClick({ src: workspace.image, alt: `${workspace.title} at B Active Sidi Gaber` })}
+                  aria-label={`View ${workspace.title} photo`}
+                >
+                  <Photo src={workspace.image} alt={`${workspace.title} at B Active Sidi Gaber`} position="center top" />
+                  {workspace.offer && <span className="card-label">{workspace.offer}</span>}
+                </button>
               </div>
               <div className="workspace-card-body">
                 <h3>{workspace.title}</h3>
                 <p className="office-type">{workspace.type}</p>
+                {workspace.branch && <p className="office-branch">{workspace.branch}</p>}
                 <ul className="office-details">
-                  {workspace.details.map((detail) => <li key={detail}><span>✓</span>{detail}</li>)}
+                  {workspace.details.map((detailItem) => {
+                    const detail = typeof detailItem === 'string' ? { label: detailItem, icon: '✓' } : detailItem
+                    return <li key={detail.label}><span aria-hidden="true">{detail.icon}</span>{detail.label}</li>
+                  })}
                 </ul>
                 <div className="office-pricing">
                   {workspace.prices.map((price) => (
                     <div className="office-price-row" key={price.label}>
-                      <span>{price.label}</span>
-                      <strong>{price.value}</strong>
-                      {price.previous && <small>Previous price <s>{price.previous}</s></small>}
+                      <span className="price-label">{price.label}</span>
+                      <div className="office-price-main">
+                        <strong>{price.value}</strong>
+                        {price.unit && <small>{price.unit}</small>}
+                      </div>
+                      {price.previous && <small className="previous-price">Original price <s>{price.previous}</s></small>}
                     </div>
                   ))}
                 </div>
@@ -370,6 +403,22 @@ function Footer() {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [notice, setNotice] = useState('')
+  const [lightbox, setLightbox] = useState(null)
+
+  useEffect(() => {
+    if (!lightbox) return undefined
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setLightbox(null)
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [lightbox])
 
   const showNotice = (message) => {
     setNotice(message)
@@ -382,7 +431,7 @@ function App() {
       <main>
         <Hero />
         <About />
-        <Workspaces />
+        <Workspaces onPhotoClick={setLightbox} />
         <Services />
         <Experience />
         <Gallery />
@@ -391,6 +440,7 @@ function App() {
         <FinalCta />
       </main>
       <Footer />
+      <ImageLightbox image={lightbox} onClose={() => setLightbox(null)} />
       {notice && <div className="notice" role="status">{notice}</div>}
     </div>
   )
